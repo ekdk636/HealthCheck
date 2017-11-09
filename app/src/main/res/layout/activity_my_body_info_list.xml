@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.test.ekdk636.healthcheck.MyBodyInfoListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        tools:background="?attr/colorAccent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0d415e"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="👪  간편 자가 건강진단"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:overScrollMode="always">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/outline3"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/title1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="22dp"
+                    android:paddingTop="16dp"
+                    android:text="👦 나의 신체정보목록"
+                    android:textIsSelectable="false"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="15dp"
+                    android:text="▪ 등록된 날짜로 확인이 가능합니다."
+                    android:textColor="#C62828"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="vertical">
+
+                    <ScrollView
+                        android:id="@+id/list_scroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+                    </ScrollView>
+
+                    <ListView
+                        android:id="@+id/btnBodyInfoList"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="#E0E0E0"
+                        android:divider="#E0E0E0"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#d0d0d0"/>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingLeft="8dp"
+                            android:text="▪ 바로 측정하기"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/radius_rounded12"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbDate"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 측정일"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView26"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtDate"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbName"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 이름"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView27"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtName"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbSex"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 성별"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView28"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtSex"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbAge"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 나이"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView29"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtAge"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbHeight"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 신장"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView30"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtHeight"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbWeight"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 몸무게"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView31"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtWeight"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbWaist"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 허리"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView32"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtWaist"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="10">
+
+                                <TextView
+                                    android:id="@+id/lbHip"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1.5"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="10dp"
+                                    android:paddingTop="2dp"
+                                    android:text="• 엉덩이"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/textView33"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"
+                                    android:gravity="center_vertical"
+                                    android:text="→"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"/>
+
+                                <TextView
+                                    android:id="@+id/txtHip"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:gravity="center_vertical"
+                                    android:paddingBottom="2dp"
+                                    android:paddingLeft="5dp"
+                                    android:paddingTop="2dp"
+                                    android:textColor="#F44336"
+                                    android:textIsSelectable="false"
+                                    android:textSize="13sp"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/btnNorWghtChk"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:background="@drawable/button1"
+                                android:text="표준 체중 및 비만도"
+                                android:textColor="#FFFFFF"/>
+
+                            <Button
+                                android:id="@+id/btnBMIChk"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/button2"
+                                android:text="신체질량지수(BMI)"
+                                android:textColor="#FFFFFF"/>
+
+                            <Button
+                                android:id="@+id/btnWHRChk"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/button3"
+                                android:text="복부비만도(WHR)"
+                                android:textColor="#FFFFFF"/>
+
+                            <Button
+                                android:id="@+id/btnFatPcntChk"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/button4"
+                                android:text="체지방률/기초대사량"
+                                android:textColor="#FFFFFF"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        tools:background="?attr/colorAccent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0d415e"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="👪  신체 비만도 측정"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+</LinearLayout>

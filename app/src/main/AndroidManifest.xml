@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.test.ekdk636.healthcheck">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".HealthBodyInfoActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+        <activity android:name=".MyBodyInfoListActivity">
+        </activity>
+        <activity android:name=".NormalWeightCheckActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+        <activity android:name=".BodyBmiCheckActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+        <activity android:name=".BodyWhrCheckActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+        <activity android:name=".BodyFatCheckActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+    </application>
+
+</manifest>

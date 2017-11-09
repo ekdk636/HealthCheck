@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.test.ekdk636.healthcheck.BodyFatCheckActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        tools:background="?attr/colorAccent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0d415e"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="👪  간편 자가 건강진단"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:overScrollMode="always">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/outline3"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/title1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="👦 체지방률 / 기초대사량 측정"
+                    android:textIsSelectable="false"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="horizontal">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="#d0d0d0"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#d0d0d0"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <RadioGroup
+                                    android:id="@+id/rgSex"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbMale"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="#0288D1"
+                                        android:checked="true"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="9dp"
+                                        android:text="남"
+                                        android:textColor="#FFFFFF"
+                                        app:buttonTint="#FFFFFF"/>
+
+                                    <RadioButton
+                                        android:id="@+id/rbFemale"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="15dp"
+                                        android:background="#E57373"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="9dp"
+                                        android:text="여"
+                                        android:textColor="#FFFFFF"
+                                        app:buttonTint="#FFFFFF"
+                                        />
+                                </RadioGroup>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:text="▪ 나이"/>
+
+                            <EditText
+                                android:id="@+id/age"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/textview1"
+                                android:ems="10"
+                                android:paddingLeft="5dp"
+                                android:focusable="false"/>
+
+                            <TextView
+                                android:id="@+id/textView7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="1"
+                                android:text="▪ 신장"/>
+
+                            <EditText
+                                android:id="@+id/height"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/textview1"
+                                android:ems="10"
+                                android:paddingLeft="5dp"
+                                android:focusable="false"/>
+
+                            <TextView
+                                android:id="@+id/textView21"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="1"
+                                android:text="▪ 몸무게"/>
+
+                            <EditText
+                                android:id="@+id/weight"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="7dp"
+                                android:layout_marginRight="7dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/textview1"
+                                android:ems="10"
+                                android:paddingLeft="5dp"
+                                android:focusable="false"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:orientation="vertical">
+
+                                <Button
+                                    android:id="@+id/btnFatChk"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="70dp"
+                                    android:layout_marginRight="70dp"
+                                    android:background="@drawable/txtview_outline"
+                                    android:text="✓ 확인"
+                                    />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="7dp"
+                                    android:background="#d0d0d0"
+                                    android:gravity="top"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="25dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:text="• 표준 체지방률(%)"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="6dp"
+                                        android:text="일반적인 동양인 기준이며, 근육량이 많은 분들은 해당하지 않습니다."
+                                        android:textSize="10sp"/>
+
+                                    <TextView
+                                        android:id="@+id/textView20"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:text="• 체지방량(kg)"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="6dp"
+                                        android:text="전체 몸무게에서 순수지방만의 무게"
+                                        android:textSize="10sp"/>
+
+                                    <TextView
+                                        android:id="@+id/textView22"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:text="• 제지방량(kg)"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="6dp"
+                                        android:text="전체 몸무게에서 지방량을 제외한 무게(근육,뼈,내장,뇌,수분 기타 등등 포함)"
+                                        android:textSize="10sp"/>
+
+                                    <TextView
+                                        android:id="@+id/textView23"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:text="• 기초대사량(Basal Metabolic Rate, BMR)"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:text="살아가는데 최소한 필요한 칼로리 양"
+                                        android:textSize="10sp"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </ScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

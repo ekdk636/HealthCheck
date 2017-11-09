@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.test.ekdk636.healthcheck.BodyWhrCheckActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        tools:background="?attr/colorAccent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0d415e"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="👪  간편 자가 건강진단"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:overScrollMode="always">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/outline3"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/title1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="👦 복부비만(WHR) 측정"
+                    android:textIsSelectable="false"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text="❖ 허리 엉덩이 둘레비 (Waist to hip ratio, WHR) 복부비만도 측정입니다.\n❖ 여성은 0.8이상, 남성은 0.95이상이면 복부비만으로 판정합니다."
+                    android:textColor="#5D4037"
+                    android:textIsSelectable="false"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="vertical">
+
+                    <ScrollView
+                        android:id="@+id/list_scroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+                    </ScrollView>
+
+                    <ListView
+                        android:id="@+id/btnBodyInfoList"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="#E0E0E0"
+                        android:divider="#E0E0E0"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#d0d0d0"/>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:id="@+id/rgSex"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/rbMale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="#0288D1"
+                                    android:checked="true"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="9dp"
+                                    android:text="남"
+                                    android:textColor="#FFFFFF"
+                                    app:buttonTint="#FFFFFF"/>
+
+                                <RadioButton
+                                    android:id="@+id/rbFemale"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:background="#E57373"
+                                    android:paddingLeft="8dp"
+                                    android:paddingRight="9dp"
+                                    android:text="여"
+                                    android:textColor="#FFFFFF"
+                                    app:buttonTint="#FFFFFF"
+                                    />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:text="▪ 허리"/>
+
+                        <EditText
+                            android:id="@+id/waist"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/textview1"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:paddingLeft="5dp"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:text="▪ 엉덩이"/>
+
+                        <EditText
+                            android:id="@+id/hip"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/textview1"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:paddingLeft="5dp"
+                            android:textSize="14sp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/btnWhrChk"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="70dp"
+                                android:layout_marginRight="70dp"
+                                android:background="@drawable/txtview_outline"
+                                android:onClick="onConfirmClick"
+                                android:text="✓ 확인"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="7dp"
+                                android:background="#d0d0d0"
+                                android:gravity="top"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="25dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="• 허리둘레를 측정하는 이유"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="허리둘레는 지방분포를 평가하는 도구입니다.\n복부비만은 질병발생의 위험요인으로 허리둘레는 복부 지방량을 잘 반영합니다. BMI보다는 질병발생 위험을 더 잘 반영하며, 허리둘레가 크면, 당뇨병, 고지혈증, 고혈압, 관상동맥질환 등의 질병발생 위험이 높습니다."
+                                    android:textSize="10sp"/>
+
+                                <View
+                                    android:id="@+id/view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginBottom="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:background="#d0d0d0"/>
+
+                                <TextView
+                                    android:id="@+id/textView20"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="• 허리둘레 측정방법"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="똑바로 서서 숨을 내쉰 상태에서 바닥과 수평하게 측정합니다.\n허리는 배꼽위치를 측정합니다.엉덩이는 가장 볼록한 부분을 측정합니다."
+                                    android:textSize="10sp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </ScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal" android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="22dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/idText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/outline1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/outline1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/nameText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@drawable/outline1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/sexText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/outline1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/ageText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@drawable/outline1"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/heightText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                />
+
+            <TextView
+                android:id="@+id/weightText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                />
+
+            <TextView
+                android:id="@+id/waistText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                />
+
+            <TextView
+                android:id="@+id/hipText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
