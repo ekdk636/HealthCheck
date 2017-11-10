@@ -49,62 +49,100 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/title1"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="4.7">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="👦 신체정보입력"
-                    android:textIsSelectable="false"
-                    android:textSize="15sp"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/title1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:paddingTop="4dp"
-                    android:text="❊ 신체정보는 날짜별로 관리됩니다."
-                    android:textColor="#01579B"
-                    android:textSize="10sp"/>
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="👦 신체정보입력"
+                        android:textIsSelectable="false"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:text="❊ 신체정보는 날짜별로 관리됩니다."
+                        android:textColor="#01579B"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="backPress"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/btnback"/>
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="62dp"
+                    android:background="#9E9E9E"
                     android:orientation="vertical">
 
-                    <ScrollView
-                        android:id="@+id/list_scroll"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp">
-                    </ScrollView>
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:orientation="vertical">
 
-                    <ListView
-                        android:id="@+id/btnBodyInfoList"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:background="#E0E0E0"
-                        android:divider="#E0E0E0"/>
+                        <ScrollView
+                            android:id="@+id/list_scroll"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+                        </ScrollView>
+
+                        <ListView
+                            android:id="@+id/btnBodyInfoList"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="#E0E0E0"
+                            android:divider="#E0E0E0"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:layout_marginBottom="3dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
                     android:background="#d0d0d0"/>
 
                 <ScrollView
@@ -206,6 +244,7 @@
                                 android:textSize="14sp"/>
 
                             <TextView
+                                android:id="@+id/textView24"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"

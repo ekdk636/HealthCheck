@@ -26,7 +26,6 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,28 +46,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="@drawable/title1"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="4.7">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="👦 복부비만(WHR) 측정"
-                    android:textIsSelectable="false"
-                    android:textSize="15sp"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/title1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="❖ 허리 엉덩이 둘레비 (Waist to hip ratio, WHR) 복부비만도 측정입니다.\n❖ 여성은 0.8이상, 남성은 0.95이상이면 복부비만으로 판정합니다."
-                    android:textColor="#5D4037"
-                    android:textIsSelectable="false"
-                    android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="👦 복부비만(WHR) 측정"
+                        android:textIsSelectable="false"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="▪ 허리 엉덩이 둘레비(WHR) 복부비만도 측정입니다.\n▪ 여성: 0.8, 남성: 0.95 이상이면 복부비만으로 판정합니다."
+                        android:textColor="#C62828"
+                        android:textIsSelectable="false"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="backPress"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/btnback"/>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -81,28 +107,36 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
+                    android:background="#9E9E9E"
                     android:orientation="vertical">
 
-                    <ScrollView
-                        android:id="@+id/list_scroll"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp">
-                    </ScrollView>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="1dp">
 
-                    <ListView
-                        android:id="@+id/btnBodyInfoList"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:background="#E0E0E0"
-                        android:divider="#E0E0E0"/>
+                        <ScrollView
+                            android:id="@+id/list_scroll"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+                        </ScrollView>
+
+                        <ListView
+                            android:id="@+id/btnBodyInfoList"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="#E0E0E0"
+                            android:divider="#E0E0E0"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:background="#d0d0d0"/>
 
                 <ScrollView
@@ -151,8 +185,17 @@
                                     android:textColor="#FFFFFF"
                                     app:buttonTint="#FFFFFF"
                                     />
+
                             </RadioGroup>
                         </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/id"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:visibility="invisible"/>
 
                         <TextView
                             android:id="@+id/textView6"
@@ -285,4 +328,25 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        tools:background="?attr/colorAccent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0d415e"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="👪  간편 자가 건강진단"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
 </LinearLayout>

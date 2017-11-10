@@ -620,4 +620,9 @@ public class HealthBodyInfoActivity extends AppCompatActivity
 
         return result.toString();
     }
+
+    public void backPress(View view)
+    {
+        super.onBackPressed();
+    }
 }

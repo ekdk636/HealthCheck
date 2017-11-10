@@ -53,6 +53,8 @@ public class BodyWhrCheckActivity extends AppCompatActivity
         EditText etWaist = (EditText) findViewById(R.id.waist);
         EditText etHip = (EditText) findViewById(R.id.hip);
 
+        TextView tvId = (TextView) findViewById(R.id.id);
+
         RadioButton rbMale = (RadioButton) findViewById(R.id.rbMale);
         RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
 
@@ -61,9 +63,12 @@ public class BodyWhrCheckActivity extends AppCompatActivity
         String waist = intent.getExtras().getString("waist");
         String hip = intent.getExtras().getString("hip");
         String sex = intent.getExtras().getString("sex");
+        String id = intent.getExtras().getString("id");
 
         etWaist.setText(waist);
         etHip.setText(hip);
+
+        tvId.setText(id);
 
         if("1".equals(sex)) rbMale.setChecked(true);
         else if("2".equals(sex)) rbFemale.setChecked(true);
@@ -221,11 +226,14 @@ public class BodyWhrCheckActivity extends AppCompatActivity
             EditText waistText = (EditText) findViewById(R.id.waist);
             EditText hipText = (EditText) findViewById(R.id.hip);
 
+            TextView idText = (TextView) findViewById(R.id.id);
+
             RadioButton rbMale = (RadioButton) findViewById(R.id.rbMale);
             RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
 
             waistText.setText(mArrayList.get(position).get("waist").toString());
             hipText.setText(mArrayList.get(position).get("hip").toString());
+            idText.setText(mArrayList.get(position).get("id").toString());
 
             String sex = mArrayList.get(position).get("sex").toString();
 
@@ -247,6 +255,8 @@ public class BodyWhrCheckActivity extends AppCompatActivity
         EditText waist = (EditText) findViewById(R.id.waist);
         EditText hip = (EditText) findViewById(R.id.hip);
 
+        TextView id = (TextView) findViewById(R.id.id);
+
         RadioButton rbMale = (RadioButton) findViewById(R.id.rbMale);
         RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
 
@@ -256,7 +266,7 @@ public class BodyWhrCheckActivity extends AppCompatActivity
         else if(rbFemale.isChecked()) sex = "2";
 
         BodyWhrCheckActivity.ConfirmClickEvent whrCheck = new BodyWhrCheckActivity.ConfirmClickEvent();
-        whrCheck.execute("http://"+getString(R.string.server_url)+"/user/body/whr",
+        whrCheck.execute("http://"+getString(R.string.server_url)+"/user/body/whr/"+id.getText().toString(),
                 waist.getText().toString(), hip.getText().toString(), sex);
     }
 
@@ -285,11 +295,6 @@ public class BodyWhrCheckActivity extends AppCompatActivity
 
                 if(json.getBoolean("result") == true)
                 {
-                    //Toast.makeText(NormalWeightCheckActivity.this, s.toString(), Toast.LENGTH_SHORT).show();
-
-                    //Intent intent = new Intent(NormalWeightCheckActivity.this, NormalWeightCheckActivity.class);
-                    //startActivity(intent);
-
                     LayoutInflater inflater = getLayoutInflater();
                     View view = inflater.inflate(R.layout.result_modal, null);
 
@@ -299,6 +304,7 @@ public class BodyWhrCheckActivity extends AppCompatActivity
 
                     final TextView modalContents = (TextView) view.findViewById(R.id.modalContents);
                     final Button btnConfirm = (Button) view.findViewById(R.id.btnConfirm);
+                    final Button btnSave = (Button) view.findViewById(R.id.btnSave);
                     final Button btnWHR = (Button) view.findViewById(R.id.btnNorWeight);
                     final Button btnWHRChk = (Button) view.findViewById(R.id.btnObesty);
 
@@ -313,11 +319,25 @@ public class BodyWhrCheckActivity extends AppCompatActivity
 
                     final AlertDialog dialog = builder.create();
 
+                    final String whr = json.getString("whr");
+                    final String whrChk = json.getString("whrChk");
+                    final String id = json.getString("id");
+
                     btnConfirm.setOnClickListener(new View.OnClickListener()
                     {
                         @Override
                         public void onClick(View v)
                         {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnSave.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            onSaveClick(v, whr, whrChk, id);
                             dialog.dismiss();
                         }
                     });
@@ -393,6 +413,107 @@ public class BodyWhrCheckActivity extends AppCompatActivity
         }
     }
 
+    public void onSaveClick(View view, String whr, String whrChk, String id)
+    {
+        SaveClickEvent normalWeightObesty = new SaveClickEvent();
+        normalWeightObesty.execute("http://"+getString(R.string.server_url)+"/user/whr/update/"+id,
+                whr, whrChk);
+    }
+
+    class SaveClickEvent extends AsyncTask<String, String, String>
+    {
+        ProgressDialog dialog = new ProgressDialog(BodyWhrCheckActivity.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+
+            dialog.setMessage("Please Wait...");
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            dialog.dismiss();
+
+            try
+            {
+                JSONObject json = new JSONObject(s);
+
+                if(json.getBoolean("result") == true)
+                {
+                    Toast.makeText(BodyWhrCheckActivity.this, "복부비만(WHR) 결과가 정상적으로 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(BodyWhrCheckActivity.this, "복부비만(WHR) 결과 저장 중 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... params)
+        {
+            StringBuilder output = new StringBuilder();
+
+            try
+            {
+                URL url = new URL(params[0]);
+                JSONObject postDataParams = new JSONObject();
+
+                postDataParams.put("whr", params[1]);
+                postDataParams.put("whrChk", params[2]);
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                if(conn != null)
+                {
+                    conn.setConnectTimeout(10000);
+                    conn.setRequestMethod("PUT");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    OutputStream os = conn.getOutputStream();
+
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "utf-8"));
+                    writer.write(getPostDataString(postDataParams));
+                    writer.flush();
+                    writer.close();
+
+                    os.close();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String line = null;
+
+                    while(true)
+                    {
+                        line = reader.readLine();
+
+                        if(line == null) break;
+
+                        output.append(line);
+                    }
+
+                    reader.close();
+                    conn.disconnect();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
+            return output.toString();
+        }
+    }
+
     public String getPostDataString(JSONObject params) throws Exception
     {
         StringBuilder result = new StringBuilder();
@@ -414,5 +535,10 @@ public class BodyWhrCheckActivity extends AppCompatActivity
         }
 
         return result.toString();
+    }
+
+    public void backPress(View view)
+    {
+        super.onBackPressed();
     }
 }

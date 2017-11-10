@@ -48,44 +48,78 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/title1"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="4.7">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="👦 표준 체중 및 비만도 측정"
-                    android:textIsSelectable="false"
-                    android:textSize="15sp"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/title1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="👦 표준 체중 및 비만도 측정"
+                        android:textIsSelectable="false"
+                        android:textSize="15sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="backPress"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/btnback"/>
+                </LinearLayout>
             </LinearLayout>
-            
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
                 android:orientation="vertical">
-                
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
+                    android:background="#9E9E9E"
                     android:orientation="vertical">
 
-                    <ScrollView
-                        android:id="@+id/list_scroll"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp">
-                    </ScrollView>
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dp"
+                        android:orientation="vertical">
 
-                    <ListView
-                        android:id="@+id/btnBodyInfoList"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:background="#E0E0E0"
-                        android:divider="#E0E0E0"/>
+                        <ScrollView
+                            android:id="@+id/list_scroll"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+                        </ScrollView>
+
+                        <ListView
+                            android:id="@+id/btnBodyInfoList"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="#E0E0E0"
+                            android:divider="#E0E0E0"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <View
@@ -155,6 +189,13 @@
                                 android:orientation="horizontal">
 
                             </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/id"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:visibility="invisible"/>
 
                             <TextView
                                 android:id="@+id/textView6"

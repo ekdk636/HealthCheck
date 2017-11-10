@@ -78,6 +78,62 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 />
+
+            <TextView
+                android:id="@+id/norWeightText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/obestyText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/bmiText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/whrText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/fatMassText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/fatMassRateText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/fatLossRateText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/bascMtsmText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="invisible"/>
         </LinearLayout>
     </LinearLayout>
 

@@ -53,13 +53,19 @@ public class BodyBmiCheckActivity extends AppCompatActivity
         EditText etHeight = (EditText) findViewById(R.id.height);
         EditText etWeight = (EditText) findViewById(R.id.weight);
 
+        TextView tvId = (TextView) findViewById(R.id.id);
+
         Intent intent = getIntent();
 
         String height = intent.getExtras().getString("height");
         String weight = intent.getExtras().getString("weight");
 
+        String id = intent.getExtras().getString("id");
+
         etHeight.setText(height);
         etWeight.setText(weight);
+
+        tvId.setText(id);
 
         mListView = (ListView) findViewById(R.id.btnBodyInfoList);
         mArrayList = new ArrayList<>();
@@ -210,8 +216,11 @@ public class BodyBmiCheckActivity extends AppCompatActivity
             EditText heightText = (EditText)findViewById(R.id.height);
             EditText weightText = (EditText)findViewById(R.id.weight);
 
+            TextView idText = (TextView) findViewById(R.id.id);
+
             heightText.setText(mArrayList.get(position).get("height").toString());
             weightText.setText(mArrayList.get(position).get("weight").toString());
+            idText.setText(mArrayList.get(position).get("id").toString());
         }
     };
 
@@ -220,8 +229,10 @@ public class BodyBmiCheckActivity extends AppCompatActivity
         EditText height = (EditText) findViewById(R.id.height);
         EditText weight = (EditText) findViewById(R.id.weight);
 
+        TextView id = (TextView) findViewById(R.id.id);
+
         BodyBmiCheckActivity.ConfirmClickEvent bmicheck = new BodyBmiCheckActivity.ConfirmClickEvent();
-        bmicheck.execute("http://"+getString(R.string.server_url)+"/user/body/bmi",
+        bmicheck.execute("http://"+getString(R.string.server_url)+"/user/body/bmi/"+id.getText().toString(),
                 height.getText().toString(), weight.getText().toString());
     }
 
@@ -259,6 +270,7 @@ public class BodyBmiCheckActivity extends AppCompatActivity
 
                     final TextView modalContents = (TextView) view.findViewById(R.id.modalContents);
                     final Button btnConfirm = (Button) view.findViewById(R.id.btnConfirm);
+                    final Button btnSave = (Button) view.findViewById(R.id.btnSave);
                     final Button btnBmi = (Button) view.findViewById(R.id.btnNorWeight);
                     final Button btnObesty = (Button) view.findViewById(R.id.btnObesty);
 
@@ -273,11 +285,25 @@ public class BodyBmiCheckActivity extends AppCompatActivity
 
                     final AlertDialog dialog = builder.create();
 
+                    final String bmi = json.getString("bmi");
+                    final String bmiObestyChk = json.getString("obestyChk");
+                    final String id = json.getString("id");
+
                     btnConfirm.setOnClickListener(new View.OnClickListener()
                     {
                         @Override
                         public void onClick(View v)
                         {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnSave.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            onSaveClick(v, bmi, bmiObestyChk, id);
                             dialog.dismiss();
                         }
                     });
@@ -352,6 +378,107 @@ public class BodyBmiCheckActivity extends AppCompatActivity
         }
     }
 
+    public void onSaveClick(View view, String bmi, String bmiObestyChk, String id)
+    {
+        SaveClickEvent normalWeightObesty = new SaveClickEvent();
+        normalWeightObesty.execute("http://"+getString(R.string.server_url)+"/user/bmi/update/"+id,
+                bmi, bmiObestyChk);
+    }
+
+    class SaveClickEvent extends AsyncTask<String, String, String>
+    {
+        ProgressDialog dialog = new ProgressDialog(BodyBmiCheckActivity.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+
+            dialog.setMessage("Please Wait...");
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            dialog.dismiss();
+
+            try
+            {
+                JSONObject json = new JSONObject(s);
+
+                if(json.getBoolean("result") == true)
+                {
+                    Toast.makeText(BodyBmiCheckActivity.this, "신체질량지수(BMI) 결과가 정상적으로 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(BodyBmiCheckActivity.this, "신체질량지수(BMI) 결과 저장 중 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... params)
+        {
+            StringBuilder output = new StringBuilder();
+
+            try
+            {
+                URL url = new URL(params[0]);
+                JSONObject postDataParams = new JSONObject();
+
+                postDataParams.put("bmi", params[1]);
+                postDataParams.put("bmiObestyChk", params[2]);
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                if(conn != null)
+                {
+                    conn.setConnectTimeout(10000);
+                    conn.setRequestMethod("PUT");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    OutputStream os = conn.getOutputStream();
+
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "utf-8"));
+                    writer.write(getPostDataString(postDataParams));
+                    writer.flush();
+                    writer.close();
+
+                    os.close();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String line = null;
+
+                    while(true)
+                    {
+                        line = reader.readLine();
+
+                        if(line == null) break;
+
+                        output.append(line);
+                    }
+
+                    reader.close();
+                    conn.disconnect();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
+            return output.toString();
+        }
+    }
+
     public String getPostDataString(JSONObject params) throws Exception
     {
         StringBuilder result = new StringBuilder();
@@ -373,5 +500,10 @@ public class BodyBmiCheckActivity extends AppCompatActivity
         }
 
         return result.toString();
+    }
+
+    public void backPress(View view)
+    {
+        super.onBackPressed();
     }
 }

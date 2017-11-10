@@ -9,12 +9,33 @@ import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.tsengvn.typekit.Typekit;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 public class MainActivity extends AppCompatActivity
 {
+    private long pressedTime;
+
+    @Override
+    public void onBackPressed()
+    {
+        //super.onBackPressed();
+        if(pressedTime == 0)
+        {
+            Toast.makeText(MainActivity.this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            pressedTime = System.currentTimeMillis();
+        }
+        else
+        {
+            int seconds = (int) (System.currentTimeMillis() - pressedTime);
+
+            if(seconds > 2000) pressedTime = 0;
+            else finish();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -100,6 +121,12 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(getApplicationContext(), BodyFatCheckActivity.class);
+
+                intent.putExtra("age", "");
+                intent.putExtra("height", "");
+                intent.putExtra("weight", "");
+                intent.putExtra("sex", "1");
+
                 startActivity(intent);
             }
         });

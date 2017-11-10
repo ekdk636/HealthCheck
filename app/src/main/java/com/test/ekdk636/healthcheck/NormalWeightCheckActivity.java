@@ -54,6 +54,8 @@ public class NormalWeightCheckActivity extends AppCompatActivity
         EditText etHeight = (EditText) findViewById(R.id.height);
         EditText etWeight = (EditText) findViewById(R.id.weight);
 
+        TextView tvId = (TextView) findViewById(R.id.id);
+
         RadioButton rbMale = (RadioButton) findViewById(R.id.rbMale);
         RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
 
@@ -62,9 +64,12 @@ public class NormalWeightCheckActivity extends AppCompatActivity
         String height = intent.getExtras().getString("height");
         String weight = intent.getExtras().getString("weight");
         String sex = intent.getExtras().getString("sex");
+        String id = intent.getExtras().getString("id");
 
         etHeight.setText(height);
         etWeight.setText(weight);
+
+        tvId.setText(id);
 
         if("1".equals(sex)) rbMale.setChecked(true);
         else if("2".equals(sex)) rbFemale.setChecked(true);
@@ -218,11 +223,14 @@ public class NormalWeightCheckActivity extends AppCompatActivity
             EditText heightText = (EditText)findViewById(R.id.height);
             EditText weightText = (EditText)findViewById(R.id.weight);
 
+            TextView idText = (TextView) findViewById(R.id.id);
+
             RadioButton rbMale = (RadioButton) findViewById(R.id.rbMale);
             RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
 
             heightText.setText(mArrayList.get(position).get("height").toString());
             weightText.setText(mArrayList.get(position).get("weight").toString());
+            idText.setText(mArrayList.get(position).get("id").toString());
 
             String sex = mArrayList.get(position).get("sex").toString();
 
@@ -243,6 +251,7 @@ public class NormalWeightCheckActivity extends AppCompatActivity
     {
         EditText height = (EditText) findViewById(R.id.height);
         EditText weight = (EditText) findViewById(R.id.weight);
+        TextView id = (TextView) findViewById(R.id.id);
 
         RadioButton rbMale = (RadioButton) findViewById(R.id.rbMale);
         RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
@@ -253,7 +262,7 @@ public class NormalWeightCheckActivity extends AppCompatActivity
         else if(rbFemale.isChecked()) sex = "2";
 
         ConfirmClickEvent normalWeightObesty = new ConfirmClickEvent();
-        normalWeightObesty.execute("http://"+getString(R.string.server_url)+"/user/body/obesty",
+        normalWeightObesty.execute("http://"+getString(R.string.server_url)+"/user/body/obesty/"+id.getText().toString(),
                 height.getText().toString(), weight.getText().toString(), sex);
     }
 
@@ -282,11 +291,6 @@ public class NormalWeightCheckActivity extends AppCompatActivity
 
                 if(json.getBoolean("result") == true)
                 {
-                    //Toast.makeText(NormalWeightCheckActivity.this, s.toString(), Toast.LENGTH_SHORT).show();
-
-                    //Intent intent = new Intent(NormalWeightCheckActivity.this, NormalWeightCheckActivity.class);
-                    //startActivity(intent);
-
                     LayoutInflater inflater = getLayoutInflater();
                     View view = inflater.inflate(R.layout.result_modal, null);
 
@@ -296,6 +300,7 @@ public class NormalWeightCheckActivity extends AppCompatActivity
 
                     final TextView modalContents = (TextView) view.findViewById(R.id.modalContents);
                     final Button btnConfirm = (Button) view.findViewById(R.id.btnConfirm);
+                    final Button btnSave = (Button) view.findViewById(R.id.btnSave);
                     final Button btnNorWeight = (Button) view.findViewById(R.id.btnNorWeight);
                     final Button btnObesty = (Button) view.findViewById(R.id.btnObesty);
 
@@ -312,6 +317,11 @@ public class NormalWeightCheckActivity extends AppCompatActivity
 
                     final AlertDialog dialog = builder.create();
 
+                    final String avrWeight = json.getString("avrWeight");
+                    final String obesty = json.getString("obesty");
+                    final String obestyChk = json.getString("obestyChk");
+                    final String id = json.getString("id");
+
                     btnConfirm.setOnClickListener(new View.OnClickListener()
                     {
                         @Override
@@ -321,9 +331,19 @@ public class NormalWeightCheckActivity extends AppCompatActivity
                         }
                     });
 
+                    btnSave.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            onSaveClick(v, avrWeight, obesty, obestyChk, id);
+                            dialog.dismiss();
+                        }
+                    });
+
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     dialog.show();
-            }
+                }
                 else
                 {
                     Toast.makeText(NormalWeightCheckActivity.this, "표준체중 및 비만도 측정 중 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
@@ -349,14 +369,114 @@ public class NormalWeightCheckActivity extends AppCompatActivity
                 postDataParams.put("weight", params[2]);
                 postDataParams.put("sex", params[3]);
 
-                Log.d("url: hei, wei, sex =>", params[0]+": "+params[1]+", "+params[2]+", "+params[3]);
-
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 if(conn != null)
                 {
                     conn.setConnectTimeout(10000);
                     conn.setRequestMethod("POST");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    OutputStream os = conn.getOutputStream();
+
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "utf-8"));
+                    writer.write(getPostDataString(postDataParams));
+                    writer.flush();
+                    writer.close();
+
+                    os.close();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String line = null;
+
+                    while(true)
+                    {
+                        line = reader.readLine();
+
+                        if(line == null) break;
+
+                        output.append(line);
+                    }
+
+                    reader.close();
+                    conn.disconnect();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
+            return output.toString();
+        }
+    }
+
+    public void onSaveClick(View view, String avrWeight, String obesty, String obestyChk, String id)
+    {
+        SaveClickEvent normalWeightObesty = new SaveClickEvent();
+        normalWeightObesty.execute("http://"+getString(R.string.server_url)+"/user/obesty/update/"+id,
+                avrWeight, obesty, obestyChk);
+    }
+
+    class SaveClickEvent extends AsyncTask<String, String, String>
+    {
+        ProgressDialog dialog = new ProgressDialog(NormalWeightCheckActivity.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+
+            dialog.setMessage("Please Wait...");
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            dialog.dismiss();
+
+            try
+            {
+                JSONObject json = new JSONObject(s);
+
+                if(json.getBoolean("result") == true)
+                {
+                    Toast.makeText(NormalWeightCheckActivity.this, "표준체중 및 비만도 결과가 정상적으로 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(NormalWeightCheckActivity.this, "표준체중 및 비만도 결과 저장 중 오류가 발생하였습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... params)
+        {
+            StringBuilder output = new StringBuilder();
+
+            try
+            {
+                URL url = new URL(params[0]);
+                JSONObject postDataParams = new JSONObject();
+
+                postDataParams.put("avrWeight", params[1]);
+                postDataParams.put("obesty", params[2]);
+                postDataParams.put("obestyChk", params[3]);
+
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                if(conn != null)
+                {
+                    conn.setConnectTimeout(10000);
+                    conn.setRequestMethod("PUT");
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
 
@@ -415,6 +535,11 @@ public class NormalWeightCheckActivity extends AppCompatActivity
         }
 
         return result.toString();
+    }
+
+    public void backPress(View view)
+    {
+        super.onBackPressed();
     }
 }
 
