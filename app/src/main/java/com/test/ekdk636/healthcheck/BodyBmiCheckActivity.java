@@ -231,6 +231,20 @@ public class BodyBmiCheckActivity extends AppCompatActivity
 
         TextView id = (TextView) findViewById(R.id.id);
 
+        if(height.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(BodyBmiCheckActivity.this, "신장(cm)을 입력하셔야 신체질량지수(BMI) 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            height.requestFocus();
+            return;
+        }
+
+        if(weight.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(BodyBmiCheckActivity.this, "몸무게(kg)을 입력하셔야 신체질량지수(BMI) 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            weight.requestFocus();
+            return;
+        }
+
         BodyBmiCheckActivity.ConfirmClickEvent bmicheck = new BodyBmiCheckActivity.ConfirmClickEvent();
         bmicheck.execute("http://"+getString(R.string.server_url)+"/user/body/bmi/"+id.getText().toString(),
                 height.getText().toString(), weight.getText().toString());

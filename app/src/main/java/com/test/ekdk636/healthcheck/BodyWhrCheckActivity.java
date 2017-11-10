@@ -265,6 +265,20 @@ public class BodyWhrCheckActivity extends AppCompatActivity
         if(rbMale.isChecked()) sex = "1";
         else if(rbFemale.isChecked()) sex = "2";
 
+        if(waist.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(BodyWhrCheckActivity.this, "신장(cm)을 입력하셔야 신체질량지수(BMI) 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            waist.requestFocus();
+            return;
+        }
+
+        if(hip.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(BodyWhrCheckActivity.this, "몸무게(kg)을 입력하셔야 신체질량지수(BMI) 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            hip.requestFocus();
+            return;
+        }
+
         BodyWhrCheckActivity.ConfirmClickEvent whrCheck = new BodyWhrCheckActivity.ConfirmClickEvent();
         whrCheck.execute("http://"+getString(R.string.server_url)+"/user/body/whr/"+id.getText().toString(),
                 waist.getText().toString(), hip.getText().toString(), sex);

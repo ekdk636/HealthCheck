@@ -270,6 +270,27 @@ public class BodyFatCheckActivity extends AppCompatActivity
         if(rbMale.isChecked()) sex = "1";
         else if(rbFemale.isChecked()) sex = "2";
 
+        if(height.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(BodyFatCheckActivity.this, "신장(cm)을 입력하셔야 체지방률/기초대사량 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            height.requestFocus();
+            return;
+        }
+
+        if(weight.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(BodyFatCheckActivity.this, "몸무게(kg)을 입력하셔야 체지방률/기초대사량 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            weight.requestFocus();
+            return;
+        }
+
+        if(age.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(BodyFatCheckActivity.this, "나이를 입력하셔야 체지방률/기초대사량 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            age.requestFocus();
+            return;
+        }
+
         BodyFatCheckActivity.ConfirmClickEvent whrCheck = new BodyFatCheckActivity.ConfirmClickEvent();
         whrCheck.execute("http://"+getString(R.string.server_url)+"/user/body/fat/"+id.getText().toString(),
                 age.getText().toString(), height.getText().toString(), weight.getText().toString(), sex);

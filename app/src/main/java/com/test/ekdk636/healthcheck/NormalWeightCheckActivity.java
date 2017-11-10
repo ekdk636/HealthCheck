@@ -261,6 +261,20 @@ public class NormalWeightCheckActivity extends AppCompatActivity
         if(rbMale.isChecked()) sex = "1";
         else if(rbFemale.isChecked()) sex = "2";
 
+        if(height.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(NormalWeightCheckActivity.this, "신장(cm)을 입력하셔야 표준체중 및 비만도 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            height.requestFocus();
+            return;
+        }
+
+        if(weight.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(NormalWeightCheckActivity.this, "몸무게(kg)을 입력하셔야 표준체중 및 비만도 측정이 가능합니다.", Toast.LENGTH_SHORT).show();
+            weight.requestFocus();
+            return;
+        }
+
         ConfirmClickEvent normalWeightObesty = new ConfirmClickEvent();
         normalWeightObesty.execute("http://"+getString(R.string.server_url)+"/user/body/obesty/"+id.getText().toString(),
                 height.getText().toString(), weight.getText().toString(), sex);

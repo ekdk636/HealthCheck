@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">HealthCheck</string>
-    <string name="server_url">192.168.42.43:3000</string>
+    <string name="server_url">192.168.219.114:3000</string>
 </resources>

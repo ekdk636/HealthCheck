@@ -250,6 +250,8 @@ public class HealthBodyInfoActivity extends AppCompatActivity
         EditText waist = (EditText) findViewById(R.id.waist);
         EditText hip = (EditText) findViewById(R.id.hip);
 
+        EditText id = (EditText) findViewById(R.id.id);
+
         RadioGroup rgSex = (RadioGroup) findViewById(R.id.rgSex);
         RadioButton rbMale = (RadioButton) findViewById(R.id.rbMale);
         RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
@@ -258,6 +260,56 @@ public class HealthBodyInfoActivity extends AppCompatActivity
 
         if(rbMale.isChecked()) sex = "1";
         else if(rbFemale.isChecked()) sex = "2";
+
+        if(id.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "등록된 목록에서 수정을 원하는 정보를 선택하세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(name.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "이름을 반드시 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
+            name.requestFocus();
+            return;
+        }
+
+        if(age.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "나이를 반드시 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
+            age.requestFocus();
+            return;
+        }
+
+        if(height.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "신장(cm)을 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            height.requestFocus();
+            return;
+        }
+
+        if(weight.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "몸무게(kg)을 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            weight.requestFocus();
+            return;
+        }
+
+        if(waist.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "허리둘레(inch)를 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            waist.requestFocus();
+            return;
+        }
+
+        if(height.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "엉덩이둘레(inch)를 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            hip.requestFocus();
+            return;
+        }
+
+
 
         EditText idText = (EditText) findViewById(R.id.id);
         new BodyInfoUpdate().execute("http://" + getString(R.string.server_url) + "/user/update/" + idText.getText(),
@@ -371,8 +423,15 @@ public class HealthBodyInfoActivity extends AppCompatActivity
 
     public void bodyInfoDelete(View view)
     {
-        EditText idText = (EditText) findViewById(R.id.id);
-        new BodyInfoDelete().execute("http://" + getString(R.string.server_url) + "/user/delete/" + idText.getText());
+        EditText id = (EditText) findViewById(R.id.id);
+
+        if(id.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "등록된 목록에서 삭제를 원하는 정보를 선택하세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        new BodyInfoDelete().execute("http://" + getString(R.string.server_url) + "/user/delete/" + id.getText());
     }
 
     class BodyInfoDelete extends AsyncTask<String, String, String>
@@ -484,6 +543,55 @@ public class HealthBodyInfoActivity extends AppCompatActivity
         RadioButton rbFemale = (RadioButton) findViewById(R.id.rbFemale);
 
         String sex = "0";
+
+        if(date.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "등록일자를 반드시 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
+            date.requestFocus();
+            return;
+        }
+
+        if(name.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "이름을 반드시 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
+            name.requestFocus();
+            return;
+        }
+
+        if(age.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "나이를 반드시 입력하셔야 합니다.", Toast.LENGTH_SHORT).show();
+            age.requestFocus();
+            return;
+        }
+
+        if(height.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "신장(cm)을 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            height.requestFocus();
+            return;
+        }
+
+        if(weight.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "몸무게(kg)을 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            weight.requestFocus();
+            return;
+        }
+
+        if(waist.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "허리둘레(inch)를 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            waist.requestFocus();
+            return;
+        }
+
+        if(hip.getText().toString().trim().length() == 0)
+        {
+            Toast.makeText(HealthBodyInfoActivity.this, "엉덩이둘레(inch)를 입력하셔야 건강체크가 가능합니다.", Toast.LENGTH_SHORT).show();
+            hip.requestFocus();
+            return;
+        }
 
         if(rbMale.isChecked()) sex = "1";
         else if(rbFemale.isChecked()) sex = "2";
